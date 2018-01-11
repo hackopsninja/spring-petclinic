@@ -46,7 +46,15 @@
 
     </properties>
 
+
     <dependencyManagement>
+
+        <!-- deploy an artifact to Nexus -->
+        <snapshotRepository>
+           <id>nexus-snapshots</id>
+           <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+
         <!-- Import the maven Spring IO Platform Bill Of Materials (BOM) -->
         <dependencies>
             <dependency>
@@ -61,31 +69,31 @@
 	<repositories>
 	 <repository>
          <id>deployment</id>
-         
+
          <url>http://192.168.1.104:8081/nexus/content/repositories/releases/</url>
       </repository>
 	  <repository>
          <id>deployments</id>
-         
+
          <url>http://192.168.1.104:8081/nexus/content/repositories/snapshots/</url>
 		 <snapshots>
 		 <enabled>true</enabled>
 		 </snapshots>
       </repository>
 	</repositories>
-	
+
 
     <!-- _vp_ 20151024 20151027 -->
     <distributionManagement>
       <repository>
          <id>deployment</id>
          <name>Internal Releases</name>
-         <url>http://192.168.1.104:8081/nexus/content/repositories/releases/</url>
+         <url>http://localhost:8081/nexus/content/repositories/releases/</url>
       </repository>
       <snapshotRepository>
-         <id>deployment</id>
+         <id>snapshots</id>
          <name>Internal Snapshot Releases</name>
-         <url>http://192.168.1.104:8081/nexus/content/repositories/snapshots/</url>
+         <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
       </snapshotRepository>
     </distributionManagement>
 
@@ -415,7 +423,7 @@
 				<serverId>deployment</serverId>
 				<allowSnapshots>true</allowSnapshots>
 				</configuration>
-			
+
 			</plugin>
         </plugins>
     </build>
